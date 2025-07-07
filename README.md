@@ -1,109 +1,87 @@
 # QuizCanvasApp
 
-# 🌐 Full Stack Web Application - Spring Boot 3 & React 18
-
-This is a **full stack web application** built using:
-
-- ⚙️ **Spring Boot 3** (Backend)
-- 🌐 **React 18** (Frontend)
-- 🛡️ **OAuth2 authentication** with Google & GitHub
-- 🗄️ **MySQL** for persistent storage
-- ☁️ **Docker-based deployment** on AWS EC2
-- 🔒 **SSL encryption** with Let's Encrypt
-
-This project is designed for hands-on learning and professional-grade development. You'll integrate secure login, process flows, database, and frontend/backend connectivity, then deploy and secure it in the cloud.
+A modern, full-stack web application for creating, managing, and playing quizzes. Built with **Spring Boot 3** (backend), **React 18** (frontend), **MySQL**, and secured with **OAuth2** authentication. Easily deployable with **Docker** on the cloud.
 
 ---
 
-## 🚀 Local Development Setup
+## ✨ Features
 
-### 1. Update Backend Configuration
-
-Edit the following file:
-
-backend/src/main/resources/application-local.yml
-
-yaml
-Copy
-Edit
-
-Add:
-
-- Google OAuth2 credentials  
-- GitHub OAuth2 credentials  
-- JWT secret key  
-- Admin email  
+- User authentication with Google & GitHub (OAuth2)
+- Create, edit, and play quizzes
+- User management and admin roles
+- Track quiz history and scores
+- Responsive, modern UI (React 18)
+- Secure REST API (Spring Boot 3)
+- MySQL persistent storage
+- Docker-based deployment (local & cloud)
 
 ---
 
-### 2. Start the MySQL Database
+## 🛠️ Tech Stack
 
+- **Frontend:** React 18, TypeScript, CSS Modules
+- **Backend:** Spring Boot 3, Java 17+
+- **Database:** MySQL
+- **Auth:** OAuth2 (Google, GitHub)
+- **Deployment:** Docker, AWS EC2, NGINX, Let's Encrypt SSL
+
+---
+
+## 🚀 Getting Started (Local Development)
+
+### 1. Backend Setup
+- Configure `backend/src/main/resources/application-local.yml` with your:
+  - Google/GitHub OAuth2 credentials
+  - JWT secret key
+  - Admin email
+- Start MySQL database (see below)
+- Run backend:
+  ```bash
+  cd backend/
+  mvn spring-boot:run -Dspring-boot.run.profiles=local
+  ```
+
+### 2. Database Setup
 ```bash
 cd database/
 docker compose up
-This will start the database required by the backend.
+```
 
-3. Run the Spring Boot Backend
-bash
-Copy
-Edit
-cd backend/
-mvn spring-boot:run -Dspring-boot.run.profiles=local
-4. Run the React Frontend
-bash
-Copy
-Edit
+### 3. Frontend Setup
+```bash
 cd frontend/
-npm ci         # Run this only the first time to install dependencies
+npm ci   # Only needed the first time
 npm start
-The frontend app will be available at:
+```
+The app will be available at [http://localhost:3000](http://localhost:3000)
 
-arduino
-Copy
-Edit
-http://localhost:3000
-☁️ AWS Cloud Deployment
-1. Install Docker on AWS EC2 Instance
-bash
-Copy
-Edit
-ssh -i <path-to-key.pem> <user>@<ec2-host>
-curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
-sudo usermod -aG docker $USER
-newgrp docker
-2. Upload Config Files to EC2
-bash
-Copy
-Edit
-scp -i <path-to-key.pem> aws/docker-compose.yml <user>@<ec2-host>:docker-compose.yml
-ssh -i <path-to-key.pem> <user>@<ec2-host> "mkdir -p nginx/conf"
-scp -i <path-to-key.pem> aws/nginx.http.conf <user>@<ec2-host>:nginx/conf/nginx.http.conf
-📌 Use nginx.http.conf before generating an SSL certificate.
+---
 
-3. Start Services and Generate SSL Certificate
-bash
-Copy
-Edit
-ssh -i <path-to-key.pem> <user>@<ec2-host>
+## ☁️ Deployment
 
-docker compose up -d
+1. **Provision AWS EC2 Instance** (Ubuntu recommended)
+2. **Install Docker**
+3. **Upload config files** (`docker-compose.yml`, NGINX configs)
+4. **Start services**
+5. **Set up SSL with Let's Encrypt**
+6. **Update DNS for your domain**
 
-docker compose run certbot certonly \
-  --webroot --webroot-path /var/www/certbot/ \
-  -d <your-domain.com>
+See detailed deployment steps in the original README or `/aws/` folder.
 
-# Confirm the certificate exists:
-sudo ls -al certbot/conf/live/<your-domain.com>/
-4. Upload HTTPS NGINX Config
-bash
-Copy
-Edit
-scp -i <path-to-key.pem> aws/nginx.https.conf <user>@<ec2-host>:nginx/conf/nginx.https.conf
-5. Restart Docker Compose
-bash
-Copy
-Edit
-ssh -i <path-to-key.pem> <user>@<ec2-host>
-docker compose restart
-Your application will now be live over HTTPS at:
-https://<your-domain.com>
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please open issues or submit pull requests for new features, bug fixes, or improvements.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 📬 Contact
+
+For questions, contact the maintainer via GitHub Issues.
