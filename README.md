@@ -74,14 +74,3 @@ See detailed deployment steps in the original README or `/aws/` folder.
 
 Contributions are welcome! Please open issues or submit pull requests for new features, bug fixes, or improvements.
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-## 📬 Contact
-
-For questions, contact the maintainer via GitHub Issues.
