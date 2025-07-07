@@ -65,7 +65,7 @@ const Profile = () => {
                 </Link>
                 <div className={styles.menuItem} onClick={() => setOpenLogoutModal(true)}>
                     <LuLogOut className={styles.icon} />
-                    Déconnexion
+                    Logout
                 </div>
             </div>
             <ConfirmModal
